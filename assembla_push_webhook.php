@@ -111,5 +111,5 @@ function get_commits_info($data){
 
 foreach ( get_assembla_ticket_number($data->data->commits) as $ticket) {
     $comment = get_commits_info($data);
-    post_comment($ticket, $comment);    
+    post_comment($ticket, $comment);
 }

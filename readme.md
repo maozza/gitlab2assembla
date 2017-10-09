@@ -18,3 +18,8 @@ using the Assembla API.
 1. start web servers with this code
 1. move the config.example.php to config.php edit it and configure it.
 1. On Gitlab go to webhooks and enter the server URL, on Trigger checkbox add "Push events" and "Tag push events" and click on add webhook
+
+### ToDO:
+Add the use of Secret Token for security
+
+

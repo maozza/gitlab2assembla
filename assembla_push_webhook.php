@@ -1,8 +1,7 @@
 <?php
-
+//$data = json_decode(file_get_contents('php://input'));
+$data = file_get_contents('php://input');
 include_once './config.php';
-
-$data = json_decode(file_get_contents('php://input'));
 
 
 
@@ -87,8 +86,8 @@ function get_commits_info($data) {
      * get gitlab data
      * return Assembla comment format 
      */
-    $commits_str = '[[url:' . $data->data->project->homepage . '|' . $data->data->project->name . ']]' . "\n";
-    foreach ($data->data->commits as $commit) {
+    $commits_str = '[[url:' . $data->project->homepage . '|' . $data->project->name . ']]' . "\n";
+    foreach ($data->commits as $commit) {
         $commits_str .= "h3. Commit \n";
         $commits_str .= '[[url:' . $commit->url . '|' . end(explode('/', $commit->url)) . ']]' . "\n";
         $commits_str .= "Author:" . $commit->author->name . "\n";
@@ -100,9 +99,10 @@ function get_commits_info($data) {
 }
 
 
-file_put_contents('/var/tmp/assembla_push_webhook.json', $data);
-if (!empty($data->data->commits)) {
-    $tickets = get_assembla_ticket_number($data->data->commits);
+
+$data = json_decode($data);
+if (!empty($data->commits)) {
+    $tickets = get_assembla_ticket_number($data->commits);
     foreach ($tickets as $ticket) {
         $comment = get_commits_info($data);
         post_comment($ticket, $comment);

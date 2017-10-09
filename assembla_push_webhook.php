@@ -103,8 +103,8 @@ function get_commits_info($data) {
 $data = json_decode($data);
 if (!empty($data->commits)) {
     $tickets = get_assembla_ticket_number($data->commits);
-    foreach ($tickets as $ticket) {
-        $comment = get_commits_info($data);
+    $comment = get_commits_info($data);
+    foreach ($tickets as $ticket) {        
         post_comment($ticket, $comment);
     }
 }

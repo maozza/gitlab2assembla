@@ -99,8 +99,10 @@ function get_commits_info($data) {
     return $commits_str;
 }
 
-$tickets = get_assembla_ticket_number($data->data->commits);
-if (!empty($tickets)) {
+
+file_put_contents('/var/tmp/assembla_push_webhook.json', $data);
+if (!empty($data->data->commits)) {
+    $tickets = get_assembla_ticket_number($data->data->commits);
     foreach ($tickets as $ticket) {
         $comment = get_commits_info($data);
         post_comment($ticket, $comment);

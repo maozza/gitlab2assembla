@@ -1,4 +1,4 @@
-if [ -z "${ASSEMBLA_KEY}" ] && [ -z "${ASSEMBLA_SECRET}" ] && [ -z "${ASSEMBLA_SPACE}" ] 
+if [ -z "${ASSEMBLA_KEY}" ] || [ -z "${ASSEMBLA_SECRET}" ] || [ -z "${ASSEMBLA_SPACE}" ] 
 then
     echo "you must set environment variable: ASSEMBLA_KEY,ASSEMBLA_SECRET,ASSEMBLA_SPACE"
     exit 1

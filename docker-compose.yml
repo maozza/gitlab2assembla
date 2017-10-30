@@ -1,0 +1,16 @@
+version: '3'
+services:
+  git2assembla:
+    build: .
+    image: git2assembla:latest
+    ports:
+      - "80:80"
+    environment:
+      ASSEMBLA_KEY: ""
+      ASSEMBLA_SECRET: ""
+      ASSEMBLA_SPACE: ""
+#    healthcheck:
+#      test: ["CMD", "curl", "-f","-k", "http://localhost/"]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
